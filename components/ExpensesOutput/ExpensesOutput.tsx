@@ -3,7 +3,7 @@ import ExpensesList from './ExpensesList'
 import ExpensesSummary from './ExpensesSummary'
 
 interface ExpensesOutputProps {
-	expenses: any
+	expenses?: any
 	expensesPeriod: string
 }
 
@@ -44,7 +44,7 @@ const ExpensesOutput = ({ expenses, expensesPeriod }: ExpensesOutputProps) => {
 	return (
 		<View>
 			<ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod} />
-			<ExpensesList expenses={DUMMY_EXPENSES}/>
+			<ExpensesList expenses={DUMMY_EXPENSES} />
 		</View>
 	)
 }
