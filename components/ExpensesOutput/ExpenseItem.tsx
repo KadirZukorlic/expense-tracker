@@ -1,8 +1,8 @@
 import { Pressable, View, Text, StyleSheet } from 'react-native'
 import { GlobalStyles } from '../../constants/styles'
-import { ExpenseItem } from '../../types'
+import { ExpenseItemProps } from '../../types'
 
-const ExpenseItem = ({ description, amount, date }: ExpenseItem) => {
+const ExpenseItem = ({ description, amount, date }: ExpenseItemProps) => {
 	return (
 		<Pressable>
 			<View style={styles.expenseItem}>
@@ -10,7 +10,7 @@ const ExpenseItem = ({ description, amount, date }: ExpenseItem) => {
 					<Text style={[styles.textBase, styles.description]}>
 						{description}
 					</Text>
-					<Text style={styles.textBase}>{date}</Text>
+					{/* <Text style={styles.textBase}>{date.toString()}</Text> */}
 				</View>
 				<View style={styles.amountContainer}>
 					<Text style={styles.amount}>{amount}</Text>
