@@ -1,4 +1,4 @@
-export interface ExpenseItem {
+export interface ExpenseItemProps {
 	id: string
 	description: string
 	amount: number
