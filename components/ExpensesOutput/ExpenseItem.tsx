@@ -4,8 +4,15 @@ import { ExpenseItemProps } from '../../types'
 import { getFormattedDate } from '../../util/date'
 
 const ExpenseItem = ({ description, amount, date }: ExpenseItemProps) => {
+	const expensePressHandler = () => {
+		console.log('expensePressHandler')
+	}
+
 	return (
-		<Pressable>
+		<Pressable
+			onPress={expensePressHandler}
+			style={({ pressed }) => pressed && styles.pressed}
+		>
 			<View style={styles.expenseItem}>
 				<View>
 					<Text style={[styles.textBase, styles.description]}>
@@ -24,6 +31,9 @@ const ExpenseItem = ({ description, amount, date }: ExpenseItemProps) => {
 export default ExpenseItem
 
 const styles = StyleSheet.create({
+	pressed: {
+		opacity: 0.75
+	},
 	expenseItem: {
 		padding: 12,
 		marginVertical: 8,
