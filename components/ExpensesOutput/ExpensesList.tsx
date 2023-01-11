@@ -1,8 +1,9 @@
-import { FlatList, Text } from 'react-native'
-import { ExpenseItem } from '../../types'
+import { FlatList } from 'react-native'
+import { ExpenseItemProps } from '../../types'
+import ExpenseItem from './ExpenseItem'
 
-function renderExpenseItem({ item }: { item: ExpenseItem }) {
-	return <Text>{item.description}</Text>
+function renderExpenseItem({ item }: { item: ExpenseItemProps }) {
+	return <ExpenseItem {...item} />
 }
 
 const ExpensesList = ({ expenses }: { expenses: any }) => {
