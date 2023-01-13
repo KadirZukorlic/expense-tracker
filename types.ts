@@ -9,5 +9,5 @@ export type RootStackParamList = {
 	AllExpenses: undefined
 	RecentExpenses: undefined
 	ExpensesOverview: undefined
-	ManageExpense: undefined
+	ManageExpense: {route: string}
 }

@@ -5,11 +5,15 @@ import { GlobalStyles } from '../../constants/styles'
 import { ExpenseItemProps } from '../../types'
 import { getFormattedDate } from '../../util/date'
 
-const ExpenseItem = ({ description, amount, date }: ExpenseItemProps) => {
-	const navigation = useNavigation<{ navigate: (name: string) => void }>()
+const ExpenseItem = ({ id, description, amount, date }: ExpenseItemProps) => {
+	const navigation = useNavigation<{
+		navigate: (name: string, {}) => void
+	}>()
 
 	const expensePressHandler = () => {
-		navigation.navigate('ManageExpense')
+		navigation.navigate('ManageExpense', {
+			expenseId: id
+		})
 	}
 
 	return (

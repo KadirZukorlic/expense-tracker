@@ -15,6 +15,8 @@ import { RootStackParamList } from './types'
 const Stack = createNativeStackNavigator<RootStackParamList>()
 const BottomTabs = createBottomTabNavigator<RootStackParamList>()
 
+// If dokon, check all the type definitions and type project according to docs
+
 function ExpensesOverview() {
 	return (
 		<BottomTabs.Navigator
@@ -68,13 +70,24 @@ export default function App() {
 		<>
 			<StatusBar style="auto" />
 			<NavigationContainer>
-				<Stack.Navigator>
+				<Stack.Navigator
+					screenOptions={{
+						headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+						headerTintColor: 'white'
+					}}
+				>
 					<Stack.Screen
 						name="ExpensesOverview"
 						component={ExpensesOverview}
 						options={{ headerShown: false }}
 					/>
-					<Stack.Screen name="ManageExpense" component={ManageExpense} />
+					<Stack.Screen
+						name="ManageExpense"
+						component={ManageExpense}
+						options={{
+							presentation: 'modal'
+						}}
+					/>
 				</Stack.Navigator>
 			</NavigationContainer>
 		</>
