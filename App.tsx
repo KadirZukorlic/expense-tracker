@@ -10,9 +10,10 @@ import AllExpenses from './screens/AllExpenses'
 
 import { GlobalStyles } from './constants/styles'
 import IconButton from './components/UI/IconButton'
+import { RootStackParamList } from './types'
 
-const Stack = createNativeStackNavigator()
-const BottomTabs = createBottomTabNavigator()
+const Stack = createNativeStackNavigator<RootStackParamList>()
+const BottomTabs = createBottomTabNavigator<RootStackParamList>()
 
 function ExpensesOverview() {
 	return (
