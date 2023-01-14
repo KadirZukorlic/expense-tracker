@@ -1,5 +1,6 @@
 import { useLayoutEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
+import Button from '../components/UI/Button'
 import IconButton from '../components/UI/IconButton'
 import { GlobalStyles } from '../constants/styles'
 
@@ -15,9 +16,20 @@ const ManageExpense = ({ route, navigation }: any) => {
 
 	const deleteExpenseHandler = () => {}
 
+	const cancelHandler = () => {}
+
+	const confirmHandler = () => {}
+
 	return (
 		<View style={styles.container}>
-			
+			<View style={styles.buttonContainer}>
+				<Button style={styles.button} mode="flat" onPress={cancelHandler}>
+					Cancel
+				</Button>
+				<Button style={styles.button} onPress={confirmHandler}>
+					{isEditing ? 'Update' : 'Add'}
+				</Button>
+			</View>
 			{isEditing && (
 				<View style={styles.deleteContainer}>
 					<IconButton
@@ -45,6 +57,15 @@ const styles = StyleSheet.create({
 		paddingTop: 8,
 		borderTopWidth: 2,
 		borderTopColor: GlobalStyles.colors.primary200,
+		alignItems: 'center'
+	},
+	button: {
+		minWidth: 120,
+		marginHorizontal: 8
+	},
+	buttonContainer: {
+		flexDirection: 'row',
+		justifyContent: 'center',
 		alignItems: 'center'
 	}
 })
