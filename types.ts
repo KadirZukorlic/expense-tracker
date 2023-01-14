@@ -1,3 +1,6 @@
+import React, { CSSProperties } from 'react'
+import { ViewStyle } from 'react-native'
+
 export type ExpenseItemProps = {
 	id: string
 	description: string
@@ -9,5 +12,12 @@ export type RootStackParamList = {
 	AllExpenses: undefined
 	RecentExpenses: undefined
 	ExpensesOverview: undefined
-	ManageExpense: {route: string}
+	ManageExpense: { route: string }
+}
+
+export type ButtonProps = {
+	children: React.ReactNode
+	onPress: () => void
+	mode?: 'flat' | undefined
+	style?: ViewStyle
 }
