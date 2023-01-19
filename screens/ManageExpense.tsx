@@ -22,8 +22,6 @@ const ManageExpense = ({ route, navigation }: any) => {
 		navigation.goBack()
 	}
 
-	console.log(editedExpenseId)
-
 	const cancelHandler = () => {
 		navigation.goBack()
 	}
