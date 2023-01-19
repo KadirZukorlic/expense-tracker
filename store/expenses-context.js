@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from 'react'
-import { ExpenseItemProps } from '../types'
 
 const DUMMY_EXPENSES = [
 	{
@@ -74,7 +73,7 @@ const expensesReducer = (state, action) => {
 			updatedExpenses[updatableExpenseIndex] = updateItem
 			return updatedExpenses
 		case 'DELETE':
-			return state.filter((item) => item.id !== action.payload.id)
+			return state.filter((item) => item.id === action.payload.id)
 		default:
 			return state
 	}
