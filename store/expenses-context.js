@@ -51,6 +51,7 @@ const DUMMY_EXPENSES = [
 	}
 ]
 
+// immigrate to typescript when more time
 export const ExpensesContext = createContext({
 	expenses: [],
 	addExpense: ({ description, amount, date }) => {},
