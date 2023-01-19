@@ -27,6 +27,20 @@ const ManageExpense = ({ route, navigation }: any) => {
 	}
 
 	const confirmHandler = () => {
+		if (isEditing) {
+			expenseCtx.updateExpense(editedExpenseId, {
+				description: 'Test!!!!',
+				amount: 29.99,
+				date: new Date('2023-01-15')
+			})
+		} else {
+			expenseCtx.addExpense({
+				description: 'Test',
+				amount: 999.99,
+				date: new Date('2023-01-19')
+			})
+		}
+
 		navigation.goBack()
 	}
 
