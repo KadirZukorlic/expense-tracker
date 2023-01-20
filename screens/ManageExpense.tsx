@@ -46,6 +46,7 @@ const ManageExpense = ({ route, navigation }: any) => {
 
 	return (
 		<View style={styles.container}>
+
 			<View style={styles.buttonContainer}>
 				<Button style={styles.button} mode="flat" onPress={cancelHandler}>
 					Cancel

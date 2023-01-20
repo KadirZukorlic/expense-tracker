@@ -21,3 +21,13 @@ export type ButtonProps = {
 	mode?: 'flat' | undefined
 	style?: ViewStyle
 }
+
+type TextInputConfig = {
+	type: any
+	maxLength: number
+}
+
+export type InputProps = {
+	label: string
+	textInputConfig: TextInputConfig
+}
