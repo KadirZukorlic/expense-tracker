@@ -1,4 +1,5 @@
-import React, { CSSProperties } from 'react'
+import React from 'react'
+import { TextInputProps } from 'react-native'
 import { ViewStyle } from 'react-native'
 
 export type ExpenseItemProps = {
@@ -22,12 +23,7 @@ export type ButtonProps = {
 	style?: ViewStyle
 }
 
-type TextInputConfig = {
-	type: any
-	maxLength: number
-}
-
 export type InputProps = {
 	label: string
-	textInputConfig: TextInputConfig
+	textInputConfig?: TextInputProps
 }
