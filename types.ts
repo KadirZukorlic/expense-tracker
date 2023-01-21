@@ -3,7 +3,7 @@ import { TextInputProps } from 'react-native'
 import { ViewStyle } from 'react-native'
 
 export type ExpenseItemProps = {
-	id: string
+	id?: string
 	description: string
 	amount: number
 	date: Date

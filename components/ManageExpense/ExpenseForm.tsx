@@ -1,14 +1,22 @@
 import { useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
+import { ExpenseItemProps } from '../../types'
+import Button from '../UI/Button'
 import Input from './Input'
 
 type inputProps = {
-	amount: string
-	date: string
+	amount: string | number | any
+	date: string | Date
 	description: string
 }
 
-const ExpenseForm = () => {
+type Props = {
+	onCancel: () => void
+	onSubmit: (expenseData: ExpenseItemProps) => void
+	submitButtonLabel: string
+}
+
+const ExpenseForm = ({ onCancel, onSubmit, submitButtonLabel }: Props) => {
 	const [inputValues, setInputValues] = useState<inputProps>({
 		amount: '',
 		date: '',
@@ -25,6 +33,16 @@ const ExpenseForm = () => {
 				[inputIdentifier]: enteredValue
 			}
 		})
+	}
+
+	const submitHandler = () => {
+		const expenseData = {
+			amount: parseInt(inputValues.amount),
+			date: new Date(inputValues.date),
+			description: inputValues.description
+		}
+
+		onSubmit(expenseData)
 	}
 
 	return (
@@ -44,6 +62,7 @@ const ExpenseForm = () => {
 					label="Date"
 					textInputConfig={{
 						placeholder: 'YYYY-MM-DD',
+						keyboardType: 'decimal-pad',
 						maxLength: 10,
 						onChangeText: inputChangedHandler.bind(this, 'date')
 					}}
@@ -58,6 +77,14 @@ const ExpenseForm = () => {
 					onChangeText: inputChangedHandler.bind(this, 'description')
 				}}
 			/>
+			<View style={styles.buttonContainer}>
+				<Button style={styles.button} mode="flat" onPress={onCancel}>
+					Cancel
+				</Button>
+				<Button style={styles.button} onPress={submitHandler}>
+					{submitButtonLabel}
+				</Button>
+			</View>
 		</View>
 	)
 }
@@ -81,5 +108,14 @@ const styles = StyleSheet.create({
 	},
 	rowInput: {
 		flex: 1
+	},
+	button: {
+		minWidth: 120,
+		marginHorizontal: 8
+	},
+	buttonContainer: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 })

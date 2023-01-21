@@ -5,6 +5,7 @@ import Button from '../components/UI/Button'
 import IconButton from '../components/UI/IconButton'
 import { GlobalStyles } from '../constants/styles'
 import { ExpensesContext } from '../store/expenses-context'
+import { ExpenseItemProps } from '../types'
 
 const ManageExpense = ({ route, navigation }: any) => {
 	const expenseCtx = useContext(ExpensesContext)
@@ -27,19 +28,11 @@ const ManageExpense = ({ route, navigation }: any) => {
 		navigation.goBack()
 	}
 
-	const confirmHandler = () => {
+	const confirmHandler = (expenseData: ExpenseItemProps) => {
 		if (isEditing) {
-			expenseCtx.updateExpense(editedExpenseId, {
-				description: 'Test!!!!',
-				amount: 29.99,
-				date: new Date('2023-01-15')
-			})
+			expenseCtx.updateExpense(editedExpenseId, expenseData)
 		} else {
-			expenseCtx.addExpense({
-				description: 'Test',
-				amount: 999.99,
-				date: new Date('2023-01-19')
-			})
+			expenseCtx.addExpense(expenseData)
 		}
 
 		navigation.goBack()
@@ -47,15 +40,11 @@ const ManageExpense = ({ route, navigation }: any) => {
 
 	return (
 		<View style={styles.container}>
-			<ExpenseForm />
-			<View style={styles.buttonContainer}>
-				<Button style={styles.button} mode="flat" onPress={cancelHandler}>
-					Cancel
-				</Button>
-				<Button style={styles.button} onPress={confirmHandler}>
-					{isEditing ? 'Update' : 'Add'}
-				</Button>
-			</View>
+			<ExpenseForm
+				submitButtonLabel={isEditing ? 'Update' : 'Add'}
+				onSubmit={confirmHandler}
+				onCancel={cancelHandler}
+			/>
 			{isEditing && (
 				<View style={styles.deleteContainer}>
 					<IconButton
@@ -83,15 +72,6 @@ const styles = StyleSheet.create({
 		paddingTop: 8,
 		borderTopWidth: 2,
 		borderTopColor: GlobalStyles.colors.primary200,
-		alignItems: 'center'
-	},
-	button: {
-		minWidth: 120,
-		marginHorizontal: 8
-	},
-	buttonContainer: {
-		flexDirection: 'row',
-		justifyContent: 'center',
 		alignItems: 'center'
 	}
 })
