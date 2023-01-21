@@ -26,4 +26,5 @@ export type ButtonProps = {
 export type InputProps = {
 	label: string
 	textInputConfig?: TextInputProps
+	style?: ViewStyle
 }
