@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { ExpenseItemProps } from '../../types'
+import { getFormattedDate } from '../../util/date'
 import Button from '../UI/Button'
 import Input from './Input'
 
 type inputProps = {
 	amount: string | number | any
-	date: string | Date
+	date: string | any
 	description: string
 }
 
@@ -14,13 +15,19 @@ type Props = {
 	onCancel: () => void
 	onSubmit: (expenseData: ExpenseItemProps) => void
 	submitButtonLabel: string
+	defaultValues: ExpenseItemProps | undefined
 }
 
-const ExpenseForm = ({ onCancel, onSubmit, submitButtonLabel }: Props) => {
+const ExpenseForm = ({
+	onCancel,
+	onSubmit,
+	submitButtonLabel,
+	defaultValues
+}: Props) => {
 	const [inputValues, setInputValues] = useState<inputProps>({
-		amount: '',
-		date: '',
-		description: ''
+		amount: defaultValues ? defaultValues.amount.toString() : '',
+		date: defaultValues ? getFormattedDate(defaultValues.date) : '',
+		description: defaultValues ? defaultValues.description : ''
 	})
 
 	const inputChangedHandler = (
@@ -37,7 +44,7 @@ const ExpenseForm = ({ onCancel, onSubmit, submitButtonLabel }: Props) => {
 
 	const submitHandler = () => {
 		const expenseData = {
-			amount: parseInt(inputValues.amount),
+			amount: +inputValues.amount,
 			date: new Date(inputValues.date),
 			description: inputValues.description
 		}
@@ -64,7 +71,8 @@ const ExpenseForm = ({ onCancel, onSubmit, submitButtonLabel }: Props) => {
 						placeholder: 'YYYY-MM-DD',
 						keyboardType: 'decimal-pad',
 						maxLength: 10,
-						onChangeText: inputChangedHandler.bind(this, 'date')
+						onChangeText: inputChangedHandler.bind(this, 'date'),
+						value: inputValues.date
 					}}
 				/>
 			</View>
@@ -74,7 +82,8 @@ const ExpenseForm = ({ onCancel, onSubmit, submitButtonLabel }: Props) => {
 					multiline: true,
 					// autoCapitalize: 'none'
 					// autoCorrect: false // default is true
-					onChangeText: inputChangedHandler.bind(this, 'description')
+					onChangeText: inputChangedHandler.bind(this, 'description'),
+					value: inputValues.description
 				}}
 			/>
 			<View style={styles.buttonContainer}>
