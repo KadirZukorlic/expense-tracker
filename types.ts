@@ -27,4 +27,5 @@ export type InputProps = {
 	label: string
 	textInputConfig?: TextInputProps
 	style?: ViewStyle
+	invalid: boolean
 }
