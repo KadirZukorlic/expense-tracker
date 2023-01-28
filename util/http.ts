@@ -1,7 +1,7 @@
 import axios, { Axios } from 'axios'
 import { ExpenseItemProps } from '../types'
 
-const BACKEND_URL = 'https://react-native-2ee11-default-rtdb.firebaseiocom'
+const BACKEND_URL = 'https://react-native-2ee11-default-rtdb.firebaseio.com'
 
 export const storeExpense = async (expenseData: ExpenseItemProps) => {
 	const response = await axios.post(BACKEND_URL + '/expenses.json', expenseData)
