@@ -2,6 +2,8 @@ import React from 'react'
 import { TextInputProps } from 'react-native'
 import { ViewStyle } from 'react-native'
 
+export type VoidCallback = () => void
+
 export type ExpenseItemProps = {
 	id?: string
 	description: string
@@ -18,7 +20,7 @@ export type RootStackParamList = {
 
 export type ButtonProps = {
 	children: React.ReactNode
-	onPress: () => void
+	onPress: VoidCallback | undefined
 	mode?: 'flat' | undefined
 	style?: ViewStyle
 }
@@ -28,4 +30,8 @@ export type InputProps = {
 	textInputConfig?: TextInputProps
 	style?: ViewStyle
 	invalid: boolean
+}
+
+export type ErrorOverlayProps = {
+	message: string
 }
