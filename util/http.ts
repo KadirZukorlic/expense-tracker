@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { Axios } from 'axios'
 import { ExpenseItemProps } from '../types'
 
 const BACKEND_URL = 'https://react-native-2ee11-default-rtdb.firebaseio.com'
@@ -23,4 +23,12 @@ export const fetchExpenses = async () => {
 		expenses.push(expenseObj)
 	}
 	return expenses
+}
+
+export const updateExpense = (id: string, expenseData: ExpenseItemProps) => {
+	return axios.put(BACKEND_URL + `/expenses/${id}.json`, expenseData)
+}
+
+export const deleteExpense = (id: string) => {
+	return axios.delete(BACKEND_URL + `/expenses/${id}.json`)
 }
